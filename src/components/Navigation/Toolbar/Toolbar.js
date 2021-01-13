@@ -13,7 +13,7 @@ import DrawerToggle from "../SideDrawers/DrawerToggle/DrawerToggle"
         {/* <Logo heigth="80%"/> */}
         </div>
         <nav className={classes.DesktopOnly}>
-            <NavigationItems/>
+            <NavigationItems isAuthenticated={props.isAuth}/>
         </nav>
     </header>
 );
