@@ -18,7 +18,7 @@ import * as actions from "../../store/actions/index"
 //     bacon:0.7
 // }
 
-class BurgerBuilder extends Component{
+export class BurgerBuilder extends Component{
     
     state={
         // ingredients:null,
@@ -157,7 +157,7 @@ class BurgerBuilder extends Component{
         purchaseCancelled={this.purchaseCancelHandler}
         purchaseConfirmed={this.purchaseConfirmationHandler}
         isAuth={this.props.isAuthenticated}
-        price={this.props.price.toFixed(2)} />
+        price={this.props.price} />
     }
 
     // if(this.state.loading){
