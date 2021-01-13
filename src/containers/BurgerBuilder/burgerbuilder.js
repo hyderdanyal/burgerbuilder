@@ -8,7 +8,6 @@ import axios from "../../../src/axios-orders"
 import Spinner from "../../components/UI/Spinner/Spinner"
 import withErrorHandler from "../../higherordercomponent/withErrorHandler/withErrorHandler"
 import {connect} from "react-redux"
-import * as actionTypes from "../../store/actions/actionTypes"
 import * as actions from "../../store/actions/index"
  
 

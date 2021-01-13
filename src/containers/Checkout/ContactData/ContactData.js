@@ -7,6 +7,7 @@ import Input from "../../../components/UI/Input/Input"
 import {connect} from "react-redux"
 import withErrorHandler from "../../../higherordercomponent/withErrorHandler/withErrorHandler"
 import * as actions from "../../../store/actions/index"
+import {checkValidity} from "../../../shared/validation"
 
 class ContactData extends Component{
     state={
@@ -134,7 +135,7 @@ class ContactData extends Component{
             ...updatedOrderForm[inputIdentifier]
         };
         updatedFormElement.value=event.target.value;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
+        updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation)
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement
         let formIsValid = true;
@@ -144,25 +145,25 @@ class ContactData extends Component{
         this.setState({orderForm:updatedOrderForm,formIsValid})
     }
 
-    checkValidity(value, rules){
-        let isValid = true;
+    // checkValidity(value, rules){
+    //     let isValid = true;
 
-        if(rules.required){
-            isValid = value.trim() !== '' && isValid;
-        }
-        if(rules.minLength){
-            isValid = value.length >= rules.minLength && isValid
-        }
-        if(rules.isNumeric){
-            const pattern = /^\d+$/;
-            isValid=pattern.test(value) && isValid;
-        }
-        if(rules.isEmail){
-            const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/
-            isValid=pattern.test(value) && isValid;
-        }
-        return isValid;
-    }
+    //     if(rules.required){
+    //         isValid = value.trim() !== '' && isValid;
+    //     }
+    //     if(rules.minLength){
+    //         isValid = value.length >= rules.minLength && isValid
+    //     }
+    //     if(rules.isNumeric){
+    //         const pattern = /^\d+$/;
+    //         isValid=pattern.test(value) && isValid;
+    //     }
+    //     if(rules.isEmail){
+    //         const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/
+    //         isValid=pattern.test(value) && isValid;
+    //     }
+    //     return isValid;
+    // }
 
     render() {
         const formElementsArray = [];
