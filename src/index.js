@@ -10,6 +10,8 @@ import burgerBuilderReducer from "./store/reducers/burgerBuilder"
 import orderReducer from './store/reducers/order'
 import authReducer from "./store/reducers/auth"
 import thunk from 'redux-thunk'
+import createSagaMiddleware from "redux-saga";
+import {watchAuth,watchBurgerBuilder,watchOrder} from "../src/store/sagas/index"
  
 //process.env.NODE_ENV === 'development' is set to use that piece of code during develpment only
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
@@ -20,7 +22,14 @@ const rootReducer = combineReducers({
   auth: authReducer
 })
 
-const store=createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
+const sagaMiddleware = createSagaMiddleware();
+
+const store=createStore(rootReducer,composeEnhancers(applyMiddleware(thunk,sagaMiddleware)));
+
+sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchBurgerBuilder);
+sagaMiddleware.run(watchOrder);
+
 
 ReactDOM.render(
   <React.StrictMode>
